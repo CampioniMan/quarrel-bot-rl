@@ -185,4 +185,4 @@ fabric.properties
 # .idea
 
 # Preventing ballchasing.com token being commited
-#config/secret/*
+config/secret/*
