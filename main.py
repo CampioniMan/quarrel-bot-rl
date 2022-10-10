@@ -4,7 +4,7 @@ import configparser
 
 if __name__ == "__main__":
     config = configparser.ConfigParser()
-    config.read_file(open(r"token.txt"))
+    config.read_file(open(r"config/secret/ballchasing.txt"))
     secret_token = config.get("token section", "token")
     status = rd.ping_ball_chasing_api(secret_token)
     match status.status_code:
