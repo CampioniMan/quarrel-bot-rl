@@ -1,16 +1,20 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import database.replay_downloader as rd
+import configparser
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+if __name__ == "__main__":
+    config = configparser.ConfigParser()
+    config.read_file(open(r"token.txt"))
+    secret_token = config.get("token section", "token")
+    status = rd.ping_ball_chasing_api(secret_token)
+    match status.status_code:
+        case 200:
+            print("API available!")
+        case 401:
+            print("Invalid token")
+        case 500:
+            print("API unavailable")
+        case _:
+            print(f"Unknown error ({status.status_code})")
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
